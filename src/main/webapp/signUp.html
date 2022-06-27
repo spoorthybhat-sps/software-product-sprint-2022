@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="signUp.css" />
+    <script src="signUp.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Create Account</h2>
+      </div>
+      <form id="form" class="form" method="POST" action="/new-task">
+        <div class="form-control">
+          <label for="username">Username</label>
+          <input type="text" placeholder="abcd123" id="username" name="userName"/>
+        </div>
+        <div class="form-control">
+          <label for="username">Email</label>
+          <input type="email" placeholder="abc123@gmail.com" id="email" name="email"/>
+        </div>
+        <div class="form-control">
+          <label for="username">Password</label>
+          <input type="password" placeholder="Password" id="password" name="passWord" />
+        </div>
+        <div class="form-control">
+          <label for="username">Rewrite Password</label>
+          <input
+            type="password"
+            placeholder="Rewrite Password "
+            id="password2"
+          />
+        </div>
+        <button type="submit" id="signUp">Sign Up</button>
+        <div id="signIn">
+          <p>Already registered <a href="index.html">sign in?</a></p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
