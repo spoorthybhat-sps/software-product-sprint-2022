@@ -27,22 +27,37 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// Function that adds a step to recipe form
-function addStep() {
+// Function that adds a step to recipe form depending on button clicked
+function addStep(type) {
   const i = document.getElementsByClassName('step-div').length;
-  const firstStep = document.querySelector('#first-step .step-div');
+  const firstStep = document.querySelector(`#first-step .${type}-step-div`);
   const newStep = firstStep.cloneNode(true);
   newStep.querySelector('input').value = "";
-  newStep.querySelector('#step').innerText = `Step ${i+1}`;
   document.getElementById('more-steps').appendChild(newStep);
 }
 
-// Function that deletes last step in form
-function removeStep() {
-  if (document.querySelector('#more-steps .step-div:last-child') != null) {
-    const steps = document.querySelector('#more-steps .step-div:last-child').remove();
-  }
+// Function that deletes a step when cross button is clicked
+function removeStep(element) {
+  element.parentNode.parentNode.parentNode.remove();
 }
+
+// function that updates result of add step
+function addStepResult(element) {
+  const result = element.parentNode.parentNode.querySelector('#result')
+  const quantity = element.parentNode.parentNode.querySelector('#quantity').value
+  const quantity_type = element.parentNode.parentNode.querySelector('#quantity-type').value
+  const ingredient = element.parentNode.parentNode.querySelector('#ingredient').value
+  result.value = `Add ${quantity} ${quantity_type} of ${ingredient}`
+}
+
+// function that updates result of wait step
+function waitStepResult(element) {
+  const result = element.parentNode.parentNode.querySelector('#result')
+  const time = element.parentNode.parentNode.querySelector('#time').value
+  const units = element.parentNode.parentNode.querySelector('#units').value
+  result.value = `Wait for ${time} ${units}`
+}
+
 function loadTasks() {
     fetch('/list-tasks').then(response => response.json()).then((tasks) => {
       const taskListElement = document.getElementById('task-list');
