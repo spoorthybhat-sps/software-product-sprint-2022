@@ -6,53 +6,30 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <!-- Bootstrap icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet'>
   <title>Document</title>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 mt-4">
-        <h4>Create a Recipe!</h4>
-        <hr>
-
-        <form action="/form-handler" method="POST">
-
-          <div class="form-group row justify-content-end pb-4">
-            <div class="col-4 text-center">
-              <label id="step">Name</label>
-              <input type="text" name="recipe-name" class="form-control">
-            </div>
-          </div>
-
-          <div id="first-step">
-            <div class="step-div">
-              <div class="form-group row p-3">
-                <label class="col-md-2" id="step">Step 1</label>
-                <div class="col-md">
-                  <input type="text" name="recipe-step[]" class="form-control">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="more-steps">
-
-          </div>
-
-          <div class="form-group p-4">
-            <div class="text-center">
-              <input type="submit" value="Submit" class="btn btn-primary">
-              <button class="btn btn-info" type="button" onclick="addStep();" >Add Step</button>
-              <button class="btn btn-info" type="button" onclick="removeStep();" >Remove Step</button>
-            </div>
-          </div>
-        </form>
-
+  <div class="container-fluid">
+    <div class="row" id="wrapper">
+     <!-- Yellow side part -->
+     <div class="col-md-2 d-none d-md-block py-3 text-md-start" id="side-bar">
+      <div class="row align-items-end">
+        <div class="col text-center p-0 align-self-start">
+          <img src="./images/logo.png" alt="pizzylogo" width="45px">
+        </div>
+        <div class="col p-0">
+          <p style="font-size: 22px;" class="pt-3">Pizzy</p>
+        </div>
       </div>
+    </div>
+
+    
     </div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="../js/cook_form.js"></script>
   <!-- Bootsrap javascript CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
