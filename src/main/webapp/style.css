@@ -1,9 +1,37 @@
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-}
-
-#greeting-container {
-  margin-top: 20px;
-}
+    /* padding-left: 500px; */
+    /* padding-top: 300px; */
+    position: absolute;
+    top: 80px;
+    padding-left: 800px;
+  }
+  body {
+    background-size: 50% 10000%;
+    background-image: url("Images/PizzaBackground.png");
+    background-repeat: no-repeat;
+  }
+  h1 {
+    font-size: 45px;
+    margin-bottom: 40px;
+    font-family: cursive;
+  }
+  #email {
+    margin-bottom: 20px;
+  }
+  .input {
+    height: 40px;
+    width: 300px;
+  }
+  #signUp {
+    position: relative;
+    top: 180px;
+  }
+  #submit {
+    background-color: rgb(255, 207, 48);
+    margin-top: 30px;
+    font-size: 20px;
+    height: 40px;
+    width: 300px;
+    cursor: pointer;
+  }
+  
