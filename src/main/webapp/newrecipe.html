@@ -65,105 +65,106 @@
 
           <!-- Input section in the form -->
           <div class="col p-3" id="recipe-form-space">
+
+            <!-- All divs are hidden since they will be used as templates in the javascript add functions -->
+            <div id="first-step" style="display: none;" onload="this.disabled = true;">
+              <!-- Blank step template div -->
+              <div class="blank-step-div">
+                <div class="form-group row p-2 align-items-center">
+                  <div class="col">
+                    <input type="text" name="recipe-step[]" class="form-control">
+                  </div>
+                  <div class="col-1">
+                    <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stir step template -->
+              <div class="stir-step-div">
+                <div class="form-group row p-2 align-items-center">
+                  <div class="col text-center">
+                    <p class="m-0">Stir</p>
+                    <input type="hidden" name="recipe-step[]" value="Stir">
+                  </div>
+                  <div class="col-1">
+                    <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wait step template -->
+              <div class="wait-step-div">
+                <div class="form-group row p-2 ">
+                  <div class="col d-flex">
+                    <div class="me-2 pt-2">
+                      <p>Wait for</p>
+                    </div>
+                    <div>
+                      <input type="text" id="time" class="form-control" oninput="waitStepResult(this)">
+                    </div>
+                    <div class="flex-fill">
+                      <select id="units" class="form-select m-0" oninput="waitStepResult(this)">
+                        <option>seconds</option>
+                        <option>minutes</option>
+                        <option>hours</option>
+                      </select>
+                    </div>
+                    <input type="hidden" id="result" name="recipe-step[]">
+                  </div>
+                  <div class="col-1 pt-2">
+                    <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add step template -->
+              <div class="add-step-div">
+                <div class="form-group row p-2 text-center">
+                  <div class="col d-flex">
+                    <div class="pt-2 me-2">
+                      <p>Add</p>
+                    </div>
+                    <div>
+                      <select id="quantity" class="form-select m-0" oninput="addStepResult(this)">
+                        <option>1/16</option>
+                        <option>1/8</option>
+                        <option>1/4</option>
+                        <option>1/3</option>
+                        <option>1/2</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                    </div>
+                    <div>
+                      <select id="quantity-type" class="form-select m-0" oninput="addStepResult(this)">
+                        <option>cup</option>
+                        <option>tablespoon</option>
+                        <option>teaspoon</option>
+                      </select>
+                    </div>
+                    <div class="pt-2 mx-2">
+                      <p>of</p>
+                    </div>
+                    <div>
+                      <input type="text" id="ingredient" value="ingredient" class="form-control" oninput="addStepResult(this)">
+                    </div>
+                    <input type="hidden" id="result" name="recipe-step[]" value="">
+                  </div>
+                  <div class="col-1 pt-2">
+                    <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <form action="/form-handler" method="POST">
     
               <div class="form-group row justify-content-center pb-4">
                 <div class="col-7 text-center">
                   <input type="text" name="recipe-name" class="form-control">
-                </div>
-              </div>
-              
-              <!-- All divs are hidden since they will be used as templates in the javascript add functions -->
-              <div id="first-step" style="display: none;">
-                <!-- Blank step template div -->
-                <div class="blank-step-div">
-                  <div class="form-group row p-2 align-items-center">
-                    <div class="col">
-                      <input type="text" name="recipe-step[]" class="form-control">
-                    </div>
-                    <div class="col-1">
-                      <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Stir step template -->
-                <div class="stir-step-div">
-                  <div class="form-group row p-2 align-items-center">
-                    <div class="col text-center">
-                      <p class="m-0">Stir</p>
-                      <input type="hidden" name="recipe-step[]" value="Stir">
-                    </div>
-                    <div class="col-1">
-                      <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Wait step template -->
-                <div class="wait-step-div">
-                  <div class="form-group row p-2 ">
-                    <div class="col d-flex">
-                      <div class="me-2 pt-2">
-                        <p>Wait for</p>
-                      </div>
-                      <div>
-                        <input type="text" id="time" class="form-control" oninput="waitStepResult(this)">
-                      </div>
-                      <div class="flex-fill">
-                        <select id="units" class="form-select m-0" oninput="waitStepResult(this)">
-                          <option>seconds</option>
-                          <option>minutes</option>
-                          <option>hours</option>
-                        </select>
-                      </div>
-                      <input type="hidden" id="result" name="recipe-step[]">
-                    </div>
-                    <div class="col-1 pt-2">
-                      <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Add step template -->
-                <div class="add-step-div">
-                  <div class="form-group row p-2 text-center">
-                    <div class="col d-flex">
-                      <div class="pt-2 me-2">
-                        <p>Add</p>
-                      </div>
-                      <div>
-                        <select id="quantity" class="form-select m-0" oninput="addStepResult(this)">
-                          <option>1/16</option>
-                          <option>1/8</option>
-                          <option>1/4</option>
-                          <option>1/3</option>
-                          <option>1/2</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div>
-                        <select id="quantity-type" class="form-select m-0" oninput="addStepResult(this)">
-                          <option>cup</option>
-                          <option>tablespoon</option>
-                          <option>teaspoon</option>
-                        </select>
-                      </div>
-                      <div class="pt-2 mx-2">
-                        <p>of</p>
-                      </div>
-                      <div>
-                        <input type="text" id="ingredient" value="ingredient" class="form-control" oninput="addStepResult(this)">
-                      </div>
-                      <input type="hidden" id="result" name="recipe-step[]" value="">
-                    </div>
-                    <div class="col-1 pt-2">
-                      <button type="button" class="btn p-0" onclick="removeStep(this)"><i class="bi bi-x"></i></button>
-                    </div>
-                  </div>
                 </div>
               </div>
               

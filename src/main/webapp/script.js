@@ -32,7 +32,9 @@ function addStep(type) {
   const i = document.getElementsByClassName('step-div').length;
   const firstStep = document.querySelector(`#first-step .${type}-step-div`);
   const newStep = firstStep.cloneNode(true);
-  newStep.querySelector('input').value = "";
+  if (type != 'stir') {
+    newStep.querySelector('input').value = "";
+  }
   document.getElementById('more-steps').appendChild(newStep);
 }
 
