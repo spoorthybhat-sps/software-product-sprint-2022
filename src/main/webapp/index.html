@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
   <body>
+    <!-- <img src="Images/PizzaBackground.png" width="50%" height="100%" ; /> -->
+
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click <a href="/hello">here</a> to see content created by server code.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <h1>Welcome to Pizzy</h1>
+      <form>
+        <label>UserName:</label><br />
+        <input
+          type="email"
+          placeholder="abc123@gmail.com"
+          id="email"
+          class="input"
+        /><br />
+        <label id="password">Password: </label><br />
+        <input type="password" placeholder="*********" class="input" /><br />
+        <!-- <button type="submit" name="LogIn" id="submit" /> -->
+        <button type="submit" id="submit">Login</button>
+      </form>
+      <div id="signUp">
+        <p>Don't have an account yet? <a href="signUp.html">SignUp</a></p>
+      </div>
     </div>
 
     <a href="./newrecipe.html">Write a Recipe</a>
