@@ -1,0 +1,43 @@
+#forum-area{
+  overflow-x: auto;
+  height: 400px;
+}
+
+#side-bar{
+  background-color: #FFCA00;
+}
+
+#wrapper{
+  height: 100vh;
+}
+
+#recipe-form-space{
+  height: 500px;
+  background-color: #EEF1F8;
+  overflow-y: scroll;
+}
+
+#create-button{
+  background-color: #FFCA00;
+  font-family: 'Asap'!important;
+  font-weight: bold!important;
+}
+
+#button-area{
+  background-color: #D9D9D9;
+}
+
+.btn-info{
+  color: white;
+  background-color: #513030;
+}
+
+body {
+  font-family: 'Asap';
+  font-weight: bold;
+}
+
+button {
+  font-family: 'Asap'!important;
+  font-weight: bold!important;
+}
