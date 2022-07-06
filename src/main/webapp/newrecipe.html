@@ -80,6 +80,16 @@
                 </div>
               </div>
 
+              <!-- Tag template div -->
+              <div class="tag-step-div col-lg-3 col-4">
+                <div class="form-group d-flex p-2 align-items-center rounded-pill" id="tag-div">
+                    <input type="text" name="tags[]" class="form-control p-0" id="tag">
+                    <div>
+                      <button type="button" class="btn p-0 m-0" onclick="removeStep(this)"><i class="bi bi-x text-white"></i></button>
+                    </div>
+                </div>
+              </div>
+
               <!-- Stir step template -->
               <div class="stir-step-div">
                 <div class="form-group row p-2 align-items-center">
@@ -196,6 +206,16 @@
               <div class="form-group p-4">
                 <div class="text-center">
                   <input type="submit" value="Create" class="btn rounded-pill" id="create-button">
+                </div>
+              </div>
+
+              <!-- tag space -->
+              <div class="p-4">
+                <div class="text-center">
+                  <input type="button" onclick="addStep('tag')"" value="Add Tag" class="btn rounded-pill mb-3" id="create-button">
+                </div>
+                <div class="row justify-content-center gy-2" id="tag-space">
+                
                 </div>
               </div>
             </form>
