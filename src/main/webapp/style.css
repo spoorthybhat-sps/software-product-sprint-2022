@@ -1,16 +1,10 @@
-#content {
+  #content {
     /* padding-left: 500px; */
     /* padding-top: 300px; */
     position: absolute;
     top: 80px;
     padding-left: 800px;
   }
-<<<<<<< HEAD
-  body {
-    background-size: 50% 10000%;
-    background-image: url("Images/PizzaBackground.png");
-    background-repeat: no-repeat;
-=======
   #background {
     position: fixed;
     top: 0;
@@ -33,7 +27,6 @@
     font-size: 45px;
     margin-left: 20px;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
->>>>>>> e8a1e6b080cf6e1a7b9e3125a93bbc7e98fc5028
   }
   h1 {
     font-size: 45px;
@@ -52,11 +45,7 @@
     top: 180px;
   }
   #submit {
-<<<<<<< HEAD
     background-color: rgb(255, 207, 48);
-=======
-    background-color: orange;
->>>>>>> e8a1e6b080cf6e1a7b9e3125a93bbc7e98fc5028
     margin-top: 30px;
     font-size: 20px;
     height: 40px;
