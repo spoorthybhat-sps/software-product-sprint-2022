@@ -42,9 +42,9 @@
           <!-- Photo and button section inside form -->
           <div class="col-md-4 p-3 text-center d-flex flex-column justify-content-around" id="button-area">
             <div class="pb-2">
-              <img src="./images/soup.png" alt="placeholder" width="150px">
+              <img src="./images/soup.png" alt="placeholder" width="150px" id="recipe-photo">
               <br>
-              <button type="button" class="btn btn-light rounded-pill">Upload</button>
+              <label for="image" class="btn btn-light rounded-pill mt-2">Upload</label>
             </div>
 
             <div class="p-2 d-flex flex-md-column flex-sm-nowrap justify-content-around flex-grow-1 flex-wrap align-content-between">
@@ -170,7 +170,7 @@
               </div>
             </div>
 
-            <form action="/form-handler" method="POST">
+            <form action="/form-handler" method="POST" enctype="multipart/form-data">
     
               <div class="form-group row justify-content-center pb-4">
                 <div class="col-7 text-center">
@@ -215,9 +215,12 @@
                   <input type="button" onclick="addStep('tag')"" value="Add Tag" class="btn rounded-pill mb-3" id="create-button">
                 </div>
                 <div class="row justify-content-center gy-2" id="tag-space">
-                
+        
                 </div>
               </div>
+
+              <input type="file" id="image" name="recipe-image" accept="image/*" style="display: none;" oninput="changeImage(this);">
+
             </form>
     
           </div>
