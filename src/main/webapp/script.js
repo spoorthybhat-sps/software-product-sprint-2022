@@ -44,6 +44,8 @@ function addStep(type, ingredient = false) {
     newStep.querySelector('#quantity-type').setAttribute('oninput','addStepResult(this, true)');
     newStep.querySelector('#ingredient').setAttribute('oninput','addStepResult(this, true)');
     document.getElementById('ingredient-list').appendChild(newStep);
+  } else if (type == 'tag') {
+    document.getElementById('tag-space').appendChild(newStep);
   } else {
     document.getElementById('more-steps').appendChild(newStep);
   }
