@@ -77,6 +77,13 @@ function waitStepResult(element) {
   result.value = `Wait for ${time} ${units}`
 }
 
+function changeImage(image_input) {
+  const [file] = image_input.files
+  if (file) {
+    document.getElementById("recipe-photo").setAttribute('src', URL.createObjectURL(file))
+  }
+}
+
 function loadTasks() {
     fetch('/list-tasks').then(response => response.json()).then((tasks) => {
       const taskListElement = document.getElementById('task-list');
