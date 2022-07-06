@@ -10,10 +10,10 @@ body {
   margin:auto;
 }
 #left-panel{
-  width:15%;
+  width: 15%;
   background-color:#FFCA00;
   height: 100vh;
-  padding:20px;
+  padding: 20px;
 }
 
 #feed-view{
