@@ -122,7 +122,7 @@
               <div class="add-step-div">
                 <div class="form-group row p-2 text-center">
                   <div class="col d-flex">
-                    <div class="pt-2 me-2">
+                    <div class="pt-2 me-2" id="add">
                       <p>Add</p>
                     </div>
                     <div>
@@ -165,6 +165,25 @@
               <div class="form-group row justify-content-center pb-4">
                 <div class="col-7 text-center">
                   <input type="text" name="recipe-name" class="form-control">
+                </div>
+              </div>
+              
+              <div class="accordion accordion-flush pb-2">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse">
+                      Ingredient List
+                    </button>
+                  </h2>
+                  <div id="flush-collapse" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <div id="ingredient-list">
+                      </div>
+                      <div class="text-center">
+                        <button class="btn btn-info" type="button" onclick="addStep('add', true);">Add Ingredient</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               
