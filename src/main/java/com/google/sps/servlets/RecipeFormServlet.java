@@ -25,6 +25,7 @@ public class RecipeFormServlet extends HttpServlet {
     // Get the value entered in the form.
     String[] steps = request.getParameterValues("recipe-step[]");
     String[] ingredients = request.getParameterValues("ingredient[]");
+    String[] tags = request.getParameterValues("tags[]");
     String name = Jsoup.clean(request.getParameter("recipe-name"), Safelist.none());
     long timestamp = System.currentTimeMillis();
 
@@ -34,16 +35,17 @@ public class RecipeFormServlet extends HttpServlet {
         Entity.newBuilder(keyFactory.newKey())
             .set("steps", Arrays.toString(steps))
             .set("ingredients", Arrays.toString(ingredients))
+            .set("tags", Arrays.toString(tags))
             .set("name", name)
             .set("timestamp", timestamp)
             .build();
     datastore.put(taskEntity);
 
     // Print the value so you can see it in the server logs.
-    System.out.println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients));
+    System.out.println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
 
     // Write the value to the response so the user can see it.
-    response.getWriter().println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients));
+    response.getWriter().println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
 
     // response.sendRedirect("/index.html")
 
