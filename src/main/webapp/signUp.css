@@ -7,11 +7,7 @@
   }
   body {
     font-family: sans-serif;
-<<<<<<< HEAD
     background-color: rgb(240, 186, 9);
-=======
-    background-color: rgb(247, 148, 49);
->>>>>>> e8a1e6b080cf6e1a7b9e3125a93bbc7e98fc5028
     display: flex;
     align-items: center;
     justify-content: center;
