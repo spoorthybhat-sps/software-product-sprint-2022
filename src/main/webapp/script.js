@@ -93,3 +93,169 @@ function loadTasks() {
   
   /** Tells the server to delete the task. */
   
+//------------------------------------->
+/*
+const firebaseConfig = {
+    apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+    authDomain: "summer22-sps-25.firebaseapp.com",
+    databaseURL: "https://summer22-sps-25-default-rtdb.firebaseio.com",
+    projectId: "summer22-sps-25",
+    storageBucket: "summer22-sps-25.appspot.com",
+    messagingSenderId: "471830306552",
+    appId: "1:471830306552:web:9b6e1d5f76156fc077650d"
+  };
+
+  // Initialize Firebase
+ // const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+const firebase;
+firebase.initializeApp(firebaseConfig);
+// Initialize variables
+const auth = firebase.auth()
+const database = firebase.database()
+  // Set up our register function
+function signUp () {
+    // Get all our input fields
+    email = document.getElementById('email').value
+    password = document.getElementById('password').value
+    rewritePassword = document.getElementById('rewritePassword').value
+    username = document.getElementById('username').value
+
+    // Validate input fields
+    if (validate_email(username) == false || validate_password(password) == false) {
+      alert('Username or Password is Outta Line!!')
+      return
+      // Don't continue running the code
+    }
+    if(password != rewritePassword ){
+        alert('Password is Wrong')
+    }
+    auth.createUserWithEmailAndPassword(username, password)
+    .then(function() {
+      // Declare user variable
+      var user = auth.currentUser
+  
+      // Add this user to Firebase Database
+      var database_ref = database.ref()
+  
+      // Create User data
+      var user_data = {
+        email : email,
+       username: username,
+       password:password,
+        last_login : Date.now()
+      }
+  
+      // Push to Firebase Database
+      database_ref.child('users/' + user.uid).set(user_data)
+  
+      // DOne
+      alert('User Created!!')
+    })
+    .catch(function(error) {
+      // Firebase will use this to alert of its errors
+      var error_code = error.code
+      var error_message = error.message
+  
+      alert(error_message)
+    })
+  }
+  
+  // Set up our login function
+  function login () {
+    // Get all our input fields
+    email = document.getElementById('email').value
+    password = document.getElementById('password').value
+  
+    // Validate input fields
+    if (validate_email(email) == false || validate_password(password) == false) {
+      alert('Email or Password is Outta Line!!')
+      return
+      // Don't continue running the code
+    }
+  
+    auth.signInWithEmailAndPassword(email, password)
+    .then(function() {
+      // Declare user variable
+      var user = auth.currentUser
+  
+      // Add this user to Firebase Database
+      var database_ref = database.ref()
+  
+      // Create User data
+      var user_data = {
+        last_login : Date.now()
+      }
+  
+      // Push to Firebase Database
+      database_ref.child('users/' + user.uid).update(user_data)
+  
+      // DOne
+      window.location.href ="Feed.html";
+  
+    })
+    .catch(function(error) {
+      // Firebase will use this to alert of its errors
+      var error_code = error.code
+      var error_message = error.message
+  
+      alert(error_message)
+    })
+  }
+    // Validate Functions
+function validate_email(email) {
+    expression = /^[^@]+@\w+(\.\w+)+\w$/
+    if (expression.test(email) == true) {
+      // Email is good
+      return true
+    } else {
+      // Email is not good
+      return false
+    }
+  }
+  
+  function validate_password(password) {
+    // Firebase only accepts lengths greater than 6
+    if (password < 6) {
+      return false
+    } else {
+      return true
+    }
+  }
+  function validate_field(field) {
+    if (field == null) {
+      return false
+    }
+  
+    if (field.length <= 0) {
+      return false
+    } else {
+      return true
+    }
+  }
+  */
+
+
+
+//  import { initializeApp } from "firebase/app";
+// import { getdatabase,ref, set } from "firebase/database";
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+//     authDomain: "summer22-sps-25.firebaseapp.com",
+//     databaseURL: "https://summer22-sps-25-default-rtdb.firebaseio.com",
+//     projectId: "summer22-sps-25",
+//     storageBucket: "summer22-sps-25.appspot.com",
+//     messagingSenderId: "471830306552",
+//     appId: "1:471830306552:web:9b6e1d5f76156fc077650d"
+//   };
+// const app= initializeApp(firebaseConfig);
+// function writeUserData(userId, name, email){
+//     const db = getdatabase();
+//     const reference = ref(db,'users/'+ userId);
+
+//     set(reference,{
+//         username:name,
+//         email:email,
+//     });
+// }
+// writeUserData("test123", "Sps", "sps@gmail.com");
