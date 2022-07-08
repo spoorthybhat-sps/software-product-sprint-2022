@@ -28,14 +28,27 @@ function addRandomGreeting() {
 }
 
 // Function that adds a step to recipe form depending on button clicked
-function addStep(type) {
+function addStep(type, ingredient = false) {
   const i = document.getElementsByClassName('step-div').length;
   const firstStep = document.querySelector(`#first-step .${type}-step-div`);
   const newStep = firstStep.cloneNode(true);
+
   if (type != 'stir') {
     newStep.querySelector('input').value = "";
   }
-  document.getElementById('more-steps').appendChild(newStep);
+
+  if (type == 'add' && ingredient) {
+    newStep.querySelector('#add').remove();
+    newStep.querySelector('#result').setAttribute('name','ingredient[]')
+    newStep.querySelector('#quantity').setAttribute('oninput','addStepResult(this, true)')
+    newStep.querySelector('#quantity-type').setAttribute('oninput','addStepResult(this, true)');
+    newStep.querySelector('#ingredient').setAttribute('oninput','addStepResult(this, true)');
+    document.getElementById('ingredient-list').appendChild(newStep);
+  } else if (type == 'tag') {
+    document.getElementById('tag-space').appendChild(newStep);
+  } else {
+    document.getElementById('more-steps').appendChild(newStep);
+  }
 }
 
 // Function that deletes a step when cross button is clicked
@@ -44,12 +57,16 @@ function removeStep(element) {
 }
 
 // function that updates result of add step
-function addStepResult(element) {
+function addStepResult(element, ingredient_list = false) {
   const result = element.parentNode.parentNode.querySelector('#result')
   const quantity = element.parentNode.parentNode.querySelector('#quantity').value
   const quantity_type = element.parentNode.parentNode.querySelector('#quantity-type').value
   const ingredient = element.parentNode.parentNode.querySelector('#ingredient').value
-  result.value = `Add ${quantity} ${quantity_type} of ${ingredient}`
+  if (ingredient_list == true) {
+    result.value = `${quantity} ${quantity_type} of ${ingredient}`
+  } else {
+    result.value = `Add ${quantity} ${quantity_type} of ${ingredient}`
+  }
 }
 
 // function that updates result of wait step
@@ -58,6 +75,13 @@ function waitStepResult(element) {
   const time = element.parentNode.parentNode.querySelector('#time').value
   const units = element.parentNode.parentNode.querySelector('#units').value
   result.value = `Wait for ${time} ${units}`
+}
+
+function changeImage(image_input) {
+  const [file] = image_input.files
+  if (file) {
+    document.getElementById("recipe-photo").setAttribute('src', URL.createObjectURL(file))
+  }
 }
 
 function loadTasks() {

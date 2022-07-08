@@ -16,6 +16,8 @@
 
     <!-- Project-specific properties -->
     <exec.mainClass>com.google.sps.ServerMain</exec.mainClass>
+    <!-- <googleCloudProjectId>summer22-sps-23</googleCloudProjectId> -->
+    <!-- <googleCloudProjectId>mumair-sps-summer22</googleCloudProjectId> -->
     <googleCloudProjectId>summer22-sps-25</googleCloudProjectId>
   </properties>
 
@@ -39,14 +41,14 @@
       <version>${jetty.version}</version>
     </dependency>
 
-    <!-- gson -->
+    <!-- Google Cloud Storage -->
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.9.0</version>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-storage</artifactId>
+      <version>1.113.0</version>
     </dependency>
 
-    <!-- datastore -->
+    <!-- Google Cloud Datastore -->
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-datastore</artifactId>
@@ -58,6 +60,13 @@
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
       <version>1.14.2</version>
+    </dependency>
+
+    <!-- Cloud Storage -->
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-storage</artifactId>
+      <version>1.113.0</version>
     </dependency>
 
   </dependencies>
