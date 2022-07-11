@@ -7,12 +7,11 @@
 <body>
   
 
-  <!-- <h1 id='status'>Sign up</h1> -->
-  <input type="text" id="username" name="username" placeholder="username" />
+  <!-- <h1 id='status'>Login</h1> -->
   <input type="text" id="email" name="email" placeholder="E-mail" />
   <input type="password" id="password" name="password" placeholder="Password" />
   
-  <input type="submit" id='sighUp' name="signup_submit" value="Sign up" />
+  <input type="submit" id='login' name="login" value="Login" />
 
 
 </body>
@@ -40,7 +39,7 @@
   const database = getDatabase(app);
   const auth = getAuth();
 
-sighUp.addEventListener('click',(e) => {
+  sighUp.addEventListener('click',(e) => {
 
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
@@ -66,6 +65,31 @@ sighUp.addEventListener('click',(e) => {
       alert(errorMessage);
     // ..
     });
+
+login.addEventListener('click',(e)=>{
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+
+      const dt = new Date();
+        update(ref(database, 'users/' + user.uid),{
+        last_login: dt,
+      })
+
+        alert('User loged in!');
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      alert(errorMessage);
+    });
+  });
 
 });
 
