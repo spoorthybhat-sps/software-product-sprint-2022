@@ -7,36 +7,87 @@
     <script src="script.js"></script>
   </head>
   <body>
-<<<<<<< HEAD
     <!-- <img src="Images/PizzaBackground.png" width="50%" height="100%" ; /> -->
-=======
     <div id="background"></div>
     <div id="pizza">
-      <img src="Images/Pizzy.png" width="150px" height="150px" />
+      <img src="images/Pizzy.png" width="150px" height="150px" />
       <p id="title">Create and Share recipes</p>
     </div>
->>>>>>> e8a1e6b080cf6e1a7b9e3125a93bbc7e98fc5028
 
     <div id="content">
       <h1>Welcome to Pizzy</h1>
-      <form>
-        <label>UserName:</label><br />
-        <input
-          type="email"
-          placeholder="abc123@gmail.com"
-          id="email"
-          class="input"
-        /><br />
-        <label id="password">Password: </label><br />
-        <input type="password" placeholder="*********" class="input" /><br />
-        <!-- <button type="submit" name="LogIn" id="submit" /> -->
-        <button type="submit" id="submit">Login</button>
-      </form>
+      <label>Email:</label><br />
+      <input
+        type="email"
+        name="email"
+        placeholder="abc123@gmail.com"
+        id="email"
+        class="input"
+      /><br />
+      <!-- <label id="password">Password: </label><br /> -->
+      <label>Password: </label><br />
+      <input type="password" id="password" name="password" placeholder="*********" class="input" /><br />
+      <!-- <button type="submit" name="LogIn" id="submit" /> -->
+      <button type="submit" id="submit" name="login" value="Login">Login</button>
+
       <div id="signUp">
         <p>Don't have an account yet? <a href="signUp.html">SignUp</a></p>
+        <a href="./newrecipe.html">Write a Recipe</a>
+        <a href="./profile.html">Go to profile</a>
+        <a href="./Experiments.html">Go to experiments</a>
       </div>
     </div>
-
-    <a href="./newrecipe.html">Write a Recipe</a>
   </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+      authDomain: "summer22-sps-25.firebaseapp.com",
+      projectId: "summer22-sps-25",
+      storageBucket: "summer22-sps-25.appspot.com",
+      messagingSenderId: "471830306552",
+      appId: "1:471830306552:web:40403b37cf5fb8eb77650d"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    submit.addEventListener('click',(e)=>{
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+
+        const dt = new Date();
+         update(ref(database, 'users/' + user.uid),{
+          last_login: dt,
+        })
+
+         alert('User loged in!');
+         location.href = "Feed.html"
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        alert(errorMessage);
+      });
+    });
+
+  </script>
+
 </html>
