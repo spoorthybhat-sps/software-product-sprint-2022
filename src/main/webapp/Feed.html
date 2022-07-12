@@ -8,38 +8,44 @@
   <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="loadRecipes()">
   <div id="content">
-    <div id ="feed" class ="flex-hor">
+    <div id="feed" class="flex-hor">
       <div id="left-panel">
         <div class="flex-hor space-around" id="logo-box">
           <image src="images/logo.png" alt="logo" />
           <h1>Pizzy</h1>
         </div>
         <div class="margin-auto" style="text-align: center;">
-        <button id="left-create-button">Create +</button>
+          <button id="left-create-button">Create +</button>
         </div>
       </div>
       <div id="feed-view">
-        <div class="flex-hor" id ="recipe-box">
+        <div class="flex-hor" id="recipe-box">
           <div id="left-recipe-box">
             <h1 style="text-align:center;">Chicken soup</h1>
-            <img src="images/soup.png" style="height:50%;width:50%;" class="center-img"/>
+            <img src="images/soup.png" style="height:50%;width:50%;" class="center-img" />
           </div>
           <div id="right-recipe-box">
             <div class="recipe-instruction">
-            <p>Add 2 cups of Water</p>
+              <p>Add 2 cups of Water</p>
             </div>
             <div class="recipe-instruction">
               <p>Add a cup of vegetable</p>
             </div>
-            <div class="recipe-instruction"><p>Add 2 cups of chicken</p></div>
-            <div class="recipe-instruction"><p>Stir</p></div>
-            <div class="recipe-instruction"><p>Add 1 spoon of salt</p></div>
-            
-            
-            
-            
+            <div class="recipe-instruction">
+              <p>Add 2 cups of chicken</p>
+            </div>
+            <div class="recipe-instruction">
+              <p>Stir</p>
+            </div>
+            <div class="recipe-instruction">
+              <p>Add 1 spoon of salt</p>
+            </div>
+
+
+
+
           </div>
         </div>
       </div>
