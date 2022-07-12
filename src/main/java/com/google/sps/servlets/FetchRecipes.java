@@ -32,7 +32,7 @@ public class FetchRecipes extends HttpServlet {
       //Key id = entity.getKey();
       Long timestamp = entity.getLong("timestamp");
       String steps = entity.getString("steps");
-      String imageUrl = entity.getString("imageUrl");
+      String imageUrl = entity.getString("imageURL");
       String tags = entity.getString("tags");
       String ingredients = entity.getString("ingredients");
       

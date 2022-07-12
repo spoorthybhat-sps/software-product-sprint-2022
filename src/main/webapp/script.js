@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
- 
-
 // Function that adds a step to recipe form depending on button clicked
 function addStep(type, ingredient = false) {
   const i = document.getElementsByClassName("step-div").length;
@@ -86,17 +83,42 @@ function changeImage(image_input) {
 function loadRecipes() {
   fetch("/fetch-recipes")
     .then((response) => response.json())
-    .then((tasks) => {
-      console.log(task);
+    .then((recipes) => {
+      const taskListElement = document.getElementById("feed-view");
+      recipes.forEach((recipe) => {
+        taskListElement.appendChild(createRecipeElement(recipe));
+      });
     });
 }
 
-function createRecipeElement(task) {
-  const taskElement = document.createElement("li");
-  const titleElement = document.createElement("p1");
-  titleElement.innerText = task;
-  taskElement.appendChild(titleElement);
-  return taskElement;
+function createRecipeElement(recipe) {
+  var div = document.createElement("div");
+  div.id = "recipe-box";
+  div.className = "flex-hor";
+  var left_div = document.createElement("div");
+  left_div.id = "left-recipe-box";
+  var title = document.createElement("h1");
+  title.innerHTML = recipe.name;
+  var img = document.createElement("img");
+  img.src = "images/soup.png";
+  img.className = "center-img";
+  img.style.cssText = "height:50%;width:50%;";
+  left_div.appendChild(title);
+  left_div.appendChild(img);
+  var right_div = document.createElement("div");
+  right_div.id = "right-recipe-box";
+  var a = recipe.steps;
+  a.replace(/\[|\]/g, "").split(", ");
+  a.forEach((item, index) => {
+    var steps_div = document.createElement("div");
+    steps_div.className = "recipe-instruction";
+    var steps = document.createElement("p");
+    steps.innerHTML = item;
+    right_div.appendChild(steps_div);
+  });
+  div.appendChild(left_div);
+  div.appendChild(right_div);
+  return div;
 }
 
 /** Tells the server to delete the task. */
