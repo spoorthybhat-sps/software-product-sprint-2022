@@ -108,12 +108,13 @@ function createRecipeElement(recipe) {
   var right_div = document.createElement("div");
   right_div.id = "right-recipe-box";
   var a = recipe.steps;
-  a.replace(/\[|\]/g, "").split(", ");
-  a.forEach((item, index) => {
+  a=a.replace(/[\[\]]+/g,'').split(", ");
+  a.forEach((item) => {
     var steps_div = document.createElement("div");
     steps_div.className = "recipe-instruction";
     var steps = document.createElement("p");
     steps.innerHTML = item;
+    steps_div.appendChild(steps);
     right_div.appendChild(steps_div);
   });
   div.appendChild(left_div);
