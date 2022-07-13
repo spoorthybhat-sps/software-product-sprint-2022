@@ -85,6 +85,23 @@
       });
   });
 
+  const user = auth.currentUser;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      alert("Active user "+ user.email);
+      //bla bla bla
+      // ...
+    } else {
+      // User is signed out
+      alert("No active user Found");
+      // ...
+      //bla bla bla
+    }
+  });
+
 </script>
 
 </html>
