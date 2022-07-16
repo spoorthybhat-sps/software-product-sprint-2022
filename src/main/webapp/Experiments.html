@@ -1,37 +1,59 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Firebase Authentication</title>
-<!-- <link rel="stylesheet" href="Experiments.css"> -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE+edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read, Write, Update, Delete Data with firebase</title>
+  <style>
+    label{display: inline-block; width:80px}
+    input,select{width: 120px;}
+  </style>
 </head>
 
 <body>
-  
+  <!-- <label>Name</label> <input id="Namebox" type="text"> <br><br> -->
+  <label>Name</label> <div id="Namebox"></div> <br><br>
+  <label>RollNo</label> <input id="Rollbox" type="text"> <br><br>
+  <label>Section</label> <input id="Secbox" type="text"> <br><br>
+  <label>Gender</label> 
+  <select id="Genbox">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
 
-  <!-- <h1 id='status'>Login</h1> -->
-  <input type="text" id="email" name="email" placeholder="E-mail" />
-  <input type="password" id="password" name="password" placeholder="Password" />
-  
-  <input type="submit" id='login' name="login" value="Login" />
-
+  <hr>
+  <button id="Insbtn">INSERT</button>
+  <button id="Selbtn">SELECT</button>
+  <button id="Updbtn">UPDATE</button>
+  <button id="Delbtn">DELETE</button>
 
 </body>
 
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+  import { getDatabase, set, ref, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+  //   authDomain: "summer22-sps-25.firebaseapp.com",
+  //   projectId: "summer22-sps-25",
+  //   storageBucket: "summer22-sps-25.appspot.com",
+  //   messagingSenderId: "471830306552",
+  //   appId: "1:471830306552:web:40403b37cf5fb8eb77650d"
+  // };
   const firebaseConfig = {
-    apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
-    authDomain: "summer22-sps-25.firebaseapp.com",
-    projectId: "summer22-sps-25",
-    storageBucket: "summer22-sps-25.appspot.com",
-    messagingSenderId: "471830306552",
-    appId: "1:471830306552:web:40403b37cf5fb8eb77650d"
+    apiKey: "AIzaSyABwZZHFsPR1azHK_7w-RZk_tNr3FOG5k8",
+    authDomain: "login-test-9cbef.firebaseapp.com",
+    projectId: "login-test-9cbef",
+    storageBucket: "login-test-9cbef.appspot.com",
+    messagingSenderId: "978603929094",
+    appId: "1:978603929094:web:fc720fc486bafad23c5d87"
   };
 
   // Initialize Firebase
@@ -39,59 +61,56 @@
   const database = getDatabase(app);
   const auth = getAuth();
 
-  sighUp.addEventListener('click',(e) => {
+  // References
+  var namebox = document.getElementById("Namebox");
+  var rollbox = document.getElementById("Rollbox");
+  var secbox = document.getElementById("Secbox");
+  var genbox = document.getElementById("Genbox");
 
-  var email = document.getElementById('email').value;
-  var password = document.getElementById('password').value;
-  var username = document.getElementById('username').value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-     // Signed in 
-      const user = userCredential.user;
-
-      set(ref(database, 'users/' + user.uid),{
-          username: username,
-          email: email
-      })
-
-      alert('user created!');
-      // ...
+  var insBtn = document.getElementById("Insbtn");
+  var selBtn = document.getElementById("Selbtn");
+  var updBtn = document.getElementById("Updbtn");
+  var delBtn = document.getElementById("Delbtn");
+  
+  // INSERT DATA FUNCTION
+  function InsertData(){
+    set(ref(database, "TheStudents/"+ rollbox.value),{
+      NameOfStd: namebox.value,
+      RollNo: rollbox.value,
+      Section: secbox.value,
+      Gender: genbox.value
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      alert(errorMessage);
-    // ..
-    });
-
-login.addEventListener('click',(e)=>{
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-
-      const dt = new Date();
-        update(ref(database, 'users/' + user.uid),{
-        last_login: dt,
-      })
-
-        alert('User loged in!');
-      // ...
+    .then(()=>{
+      alert("data stored successfully");
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+    .catch((error)=>{
+      alert("unsuccessful, error"+error);
+    })
+  }
 
-      alert(errorMessage);
+  // SELECT DATA FUNCTION
+  function SelectData(){
+    const dbref = ref(database);
+
+    get(child(dbref, "TheStudents/"+ rollbox.value)).then((snapshot)=>{
+      if(snapshot.exists()){
+        namebox.value = snapshot.val().NameOfStd;
+        secbox.value = snapshot.val().Section;
+        genbox.value = snapshot.val().Gender;
+      }
+
+      else{
+        alert("No data found");
+      }
+    })
+    .catch((error)=>{
+      alert("unsuccessful, error"+error);
     });
-  });
+  }
 
-});
+  // Assign Events To Btns
+  insBtn.addEventListener('click', InsertData);
+  selBtn.addEventListener('click', SelectData);
 
 </script>
 
