@@ -44,7 +44,7 @@
                 <div class="col-md-3">
                   <h5>Username</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-username" class="col-md-9 text-secondary">
                   Mickey_Mouse
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-3">
                   <h5>Email</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-email" class="col-md-9 text-secondary">
                   abc@gmail.com
                 </div>
               </div>
@@ -197,13 +197,13 @@
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       alert("Active user "+ user.email);
-      //bla bla bla
+      document.getElementById('P-email').innerHTML = user.email;
+      document.getElementById('P-username').innerHTML = user.username;
       // ...
     } else {
       // User is signed out
       alert("No active user Found");
       // ...
-      //bla bla bla
     }
   });
 
