@@ -7,7 +7,7 @@
   }
   body {
     font-family: sans-serif;
-    background-color: rgb(247, 148, 49);
+    background-color: rgba(255, 202, 0, 1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,20 +34,20 @@
     padding: 30px 40px;
   }
   .form-control {
-    padding: 10px 20px;
+    padding: 10px 50px;
   }
   .form-control input {
     display: block;
     width: 280px;
     height: 33px;
   }
-  #signUp {
+ button{
     font-size: 20px;
-    background-color: orange;
+    background-color: rgba(255, 202, 0, 1);
     width: 280px;
     height: 33px;
     /* padding: 20px 40px; */
-    margin-left: 20px;
+    margin-left: 50px;
     margin-top: 10px;
     cursor: pointer;
   }
