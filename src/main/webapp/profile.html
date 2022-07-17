@@ -177,7 +177,7 @@
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
-  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+  import { getDatabase, set, get, child, ref, update } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -197,16 +197,33 @@
   const database = getDatabase(app);
   const auth = getAuth();
 
-
   const user = auth.currentUser;
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      alert("Active user "+ user.email);
-      document.getElementById('P-email').innerHTML = user.email;
-      document.getElementById('P-username').innerHTML = user.username;
+      alert("Active user "+ user.uid);
+      
+      const dbref = ref(database);
+
+      get(child(dbref,'users/' + user.uid)).then((snapshot)=>{
+        if(snapshot.exists()){
+          // namebox.value = snapshot.val().NameOfStd;
+          document.getElementById('P-email').innerHTML = snapshot.val().email;
+          document.getElementById('P-username').innerHTML = snapshot.val().username;
+        }
+
+        else{
+          alert("No data found");
+        }
+      })
+      .catch((error)=>{
+        alert("Unsuccessful, error "+error);
+      });
+
+
       // ...
     } else {
       // User is signed out
