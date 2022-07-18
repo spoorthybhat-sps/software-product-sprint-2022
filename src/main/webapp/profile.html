@@ -30,6 +30,9 @@
           <form action="#recipes">
             <button type="submit" id="left-create-button">Recipes</button>
           </form>
+          <form action="update.html">
+            <button type="submit" id="left-create-button">Update</button>
+          </form>
           </div>
         </div>
 
@@ -204,7 +207,7 @@
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      alert("Active user "+ user.uid);
+      alert("Active user "+ user.email);
       
       const dbref = ref(database);
 

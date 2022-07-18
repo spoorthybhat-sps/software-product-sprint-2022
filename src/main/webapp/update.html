@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Update</title>
+    <link rel="stylesheet" href="signUp.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Update Account</h2>
+      </div>
+        <div class="form-control">
+          <label for="username">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Full Name" />
+        </div>
+        <div class="form-control">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Username" />
+        </div>
+        <div class="form-control">
+          <label for="username">Phone</label>
+          <input type="text" id="phone" name="phone" placeholder="Phone" />
+        </div>
+        <div class="form-control">
+          <label for="username">Address</label>
+          <input type="text" id="address" name="address" placeholder="Address" />
+        </div>
+        <div class="form-control">
+          <label for="username">Date of Birth</label>
+          <input type="text" id="birth" name="birth" placeholder="Date of Birth" />
+        </div>
+        <button type="submit" id="submit">Update</button>
+        <div id="signIn">
+          <p>Everything ok? <a href="profile.html">return</a></p>
+        </div>
+    </div>
+  </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    import { getDatabase, set, get, child, ref, update } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+      authDomain: "summer22-sps-25.firebaseapp.com",
+      projectId: "summer22-sps-25",
+      storageBucket: "summer22-sps-25.appspot.com",
+      messagingSenderId: "471830306552",
+      appId: "1:471830306552:web:40403b37cf5fb8eb77650d"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    
+    submit.addEventListener('click',(e)=>{
+      const user = auth.currentUser;
+    
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
+          alert("Active user "+ user.email);
+
+          update(ref(database, 'users/' + user.uid),{
+            name: name
+          })
+          .then(()=>{
+            alert("Data stored successfully");
+          })
+          .catch((error)=>{
+            alert("Unsuccessful, error "+error);
+          });
+    
+    
+          // ...
+        } else {
+          // User is signed out
+          alert("No active user Found");
+          // ...
+        }
+      });
+    });
+  
+  </script>
+</html>
