@@ -10,7 +10,7 @@
         <h2>Update Account</h2>
       </div>
         <div class="form-control">
-          <label for="username">Full Name</label>
+          <label for="username">Name</label>
           <input type="text" id="name" name="name" placeholder="Full Name" />
         </div>
         <div class="form-control">
@@ -69,8 +69,18 @@
           const uid = user.uid;
           alert("Active user "+ user.email);
 
+          var name = document.getElementById('name').value;
+          var username = document.getElementById('username').value;
+          var phone = document.getElementById('phone').value;
+          var address = document.getElementById('address').value;
+          var birth = document.getElementById('birth').value;
+
           update(ref(database, 'users/' + user.uid),{
-            name: name
+            name: name,
+            username: username,
+            phone: phone,
+            address: address,
+            birth: birth
           })
           .then(()=>{
             alert("Data stored successfully");

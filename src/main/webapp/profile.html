@@ -45,7 +45,7 @@
                 <div class="col-md-3">
                   <h5>Full Name</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-name" class="col-md-9 text-secondary">
                   Michael Smith
                 </div>
               </div>
@@ -72,7 +72,7 @@
                 <div class="col-md-3">
                   <h5>Phone</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-phone" class="col-md-9 text-secondary">
                   123456789
                 </div>
               </div>
@@ -81,7 +81,7 @@
                 <div class="col-md-3">
                   <h5>Address</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-address" class="col-md-9 text-secondary">
                   442 Country Street Muskego, WI 53150
                 </div>
               </div>
@@ -90,7 +90,7 @@
                 <div class="col-md-3">
                   <h5>Date of Birth</h5>
                 </div>
-                <div class="col-md-9 text-secondary">
+                <div id="P-birth" class="col-md-9 text-secondary">
                   March 28, 2000
                 </div>
               </div>
@@ -214,8 +214,12 @@
       get(child(dbref,'users/' + user.uid)).then((snapshot)=>{
         if(snapshot.exists()){
           // namebox.value = snapshot.val().NameOfStd;
-          document.getElementById('P-email').innerHTML = snapshot.val().email;
+          document.getElementById('P-name').innerHTML = snapshot.val().name;
           document.getElementById('P-username').innerHTML = snapshot.val().username;
+          document.getElementById('P-email').innerHTML = snapshot.val().email;
+          document.getElementById('P-phone').innerHTML = snapshot.val().phone;
+          document.getElementById('P-address').innerHTML = snapshot.val().address;
+          document.getElementById('P-birth').innerHTML = snapshot.val().birth;
         }
 
         else{
