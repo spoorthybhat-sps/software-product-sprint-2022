@@ -35,12 +35,15 @@ public class RecipeFormServlet extends HttpServlet {
     String[] ingredients = request.getParameterValues("ingredient[]");
     String[] tags = request.getParameterValues("tags[]");
     String name = Jsoup.clean(request.getParameter("recipe-name"), Safelist.none());
+    String uploadedFileUrl = "https://storage.googleapis.com/summer22-sps-25.appspot.com/soup.png1658613930325";
     long timestamp = System.currentTimeMillis();
 
     Part filePart = request.getPart("recipe-image");
-    String fileName = filePart.getSubmittedFileName() + timestamp;
-    InputStream fileInputStream = filePart.getInputStream();
-    String uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
+    if (filePart.getSubmittedFileName() != "") {
+      String fileName = filePart.getSubmittedFileName() + timestamp;
+      InputStream fileInputStream = filePart.getInputStream();
+      uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
+    }
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Recipe");
