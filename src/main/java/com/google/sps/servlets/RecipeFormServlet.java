@@ -61,7 +61,7 @@ public class RecipeFormServlet extends HttpServlet {
     // // Write the value to the response so the user can see it.
     // response.getWriter().println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
 
-    response.sendRedirect("/newrecipe.html");
+    response.sendRedirect("/Feed.html");
 
   }
 
