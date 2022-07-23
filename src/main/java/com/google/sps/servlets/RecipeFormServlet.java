@@ -5,6 +5,7 @@ import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.IncompleteKey;
 import com.google.cloud.datastore.KeyFactory;
+
 import java.io.IOException;
 import java.util.Arrays;
 import javax.servlet.http.Part;
@@ -39,7 +40,8 @@ public class RecipeFormServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
 
     Part filePart = request.getPart("recipe-image");
-    if (filePart.getSubmittedFileName() != "") {
+    String filename = filePart.getSubmittedFileName();
+    if (!filename.isEmpty()) {
       String fileName = filePart.getSubmittedFileName() + timestamp;
       InputStream fileInputStream = filePart.getInputStream();
       uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
@@ -59,10 +61,10 @@ public class RecipeFormServlet extends HttpServlet {
     datastore.put(taskEntity);
 
     // // Print the value so you can see it in the server logs.
-    // System.out.println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
+    // System.out.println(filename.isEmpty());
 
     // // Write the value to the response so the user can see it.
-    // response.getWriter().println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
+    // response.getWriter().println(filename.isEmpty());
 
     response.sendRedirect("/Feed.html");
 
