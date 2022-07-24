@@ -5,6 +5,7 @@ import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.IncompleteKey;
 import com.google.cloud.datastore.KeyFactory;
+
 import java.io.IOException;
 import java.util.Arrays;
 import javax.servlet.http.Part;
@@ -35,12 +36,16 @@ public class RecipeFormServlet extends HttpServlet {
     String[] ingredients = request.getParameterValues("ingredient[]");
     String[] tags = request.getParameterValues("tags[]");
     String name = Jsoup.clean(request.getParameter("recipe-name"), Safelist.none());
+    String uploadedFileUrl = "https://storage.googleapis.com/summer22-sps-25.appspot.com/soup.png1658613930325";
     long timestamp = System.currentTimeMillis();
 
     Part filePart = request.getPart("recipe-image");
-    String fileName = filePart.getSubmittedFileName() + timestamp;
-    InputStream fileInputStream = filePart.getInputStream();
-    String uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
+    String filename = filePart.getSubmittedFileName();
+    if (!filename.isEmpty()) {
+      String fileName = filePart.getSubmittedFileName() + timestamp;
+      InputStream fileInputStream = filePart.getInputStream();
+      uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
+    }
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Recipe");
@@ -56,12 +61,12 @@ public class RecipeFormServlet extends HttpServlet {
     datastore.put(taskEntity);
 
     // // Print the value so you can see it in the server logs.
-    // System.out.println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
+    // System.out.println(filename.isEmpty());
 
     // // Write the value to the response so the user can see it.
-    // response.getWriter().println("Name: " + name + " steps: " + Arrays.toString(steps) + " ingedients: " + Arrays.toString(ingredients) + " tags: " + Arrays.toString(tags));
+    // response.getWriter().println(filename.isEmpty());
 
-    response.sendRedirect("/newrecipe.html");
+    response.sendRedirect("/Feed.html");
 
   }
 
