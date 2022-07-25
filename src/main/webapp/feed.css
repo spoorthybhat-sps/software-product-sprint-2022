@@ -17,6 +17,10 @@ body {
   position:fixed;
 }
 
+#color {
+  background-color:#FFCA00;
+}
+
 #feed-view {
   width:85%;
   height: 100vh;
