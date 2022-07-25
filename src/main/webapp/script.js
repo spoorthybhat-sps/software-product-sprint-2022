@@ -100,7 +100,7 @@ function createRecipeElement(recipe) {
   var title = document.createElement("h1");
   title.innerHTML = recipe.name;
   var img = document.createElement("img");
-  img.src = "images/soup.png";
+  img.src = recipe.imageUrl;
   img.className = "center-img";
   img.style.cssText = "height:50%;width:50%;";
   left_div.appendChild(title);
