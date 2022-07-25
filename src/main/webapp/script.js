@@ -108,7 +108,18 @@ function createRecipeElement(recipe) {
   var right_div = document.createElement("div");
   right_div.id = "right-recipe-box";
   var a = recipe.steps;
-  a=a.replace(/[\[\]]+/g,'').split(", ");
+  var ingredients = recipe.ingredients;
+  var tags = recipe.tags;
+  a = a.replace(/[\[\]]+/g, "").split(", ");
+  tags = tags.replace(/[\[\]]+/g, "").split(", ");
+  ingredients = ingredients.replace(/[\[\]]+/g, "").split(", ");
+  var tags_div = document.createElement("div");
+  tags_div.id = "tags";
+  left_div.appendChild(tags_div);
+  var ingredients_div = document.createElement("div");
+  ingredients_div.id = "ingredients";
+  right_div.appendChild(ingredients_div);
+
   a.forEach((item) => {
     var steps_div = document.createElement("div");
     steps_div.className = "recipe-instruction";
@@ -116,6 +127,17 @@ function createRecipeElement(recipe) {
     steps.innerHTML = item;
     steps_div.appendChild(steps);
     right_div.appendChild(steps_div);
+  });
+  tags.forEach((item) => {
+    var tag = document.createElement("p");
+    tag.id = "tag";
+    tag.innerHTML = item;
+    tags_div.appendChild(tag);
+  });
+  ingredients.forEach((item) => {
+    var ingredient = document.createElement("p");
+    ingredient.innerHTML = item;
+    ingredients_div.appendChild(ingredient);
   });
   div.appendChild(left_div);
   div.appendChild(right_div);
