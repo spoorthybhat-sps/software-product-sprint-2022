@@ -180,12 +180,8 @@
       get(child(dbref, 'users/' + user.uid)).then((snapshot) => {
         if (snapshot.exists()) {
           // namebox.value = snapshot.val().NameOfStd;
-          document.getElementById('P-name').innerHTML = snapshot.val().name;
           document.getElementById('P-username').innerHTML = snapshot.val().username;
           document.getElementById('P-email').innerHTML = snapshot.val().email;
-          document.getElementById('P-phone').innerHTML = snapshot.val().phone;
-          document.getElementById('P-address').innerHTML = snapshot.val().address;
-          document.getElementById('P-birth').innerHTML = snapshot.val().birth;
         }
 
         else {
@@ -193,15 +189,15 @@
         }
       })
         .catch((error) => {
-         // alert("Unsuccessful, error " + error);
+          // alert("Unsuccessful, error " + error);
         });
 
 
       // ...
     } else {
-      // User is signed out
-      alert("No active user Found");
-      // ...
+      // No user is signed in.
+      console.log('No user is signed in.');
+      window.location = 'index.html';
     }
   });
 
