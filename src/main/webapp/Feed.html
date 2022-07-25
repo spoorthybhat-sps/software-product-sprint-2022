@@ -9,13 +9,27 @@
 </head>
 
 <script type="module">
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
-   const auth = getAuth();
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAh50tKq3hCpvevF-UUrYyDg5kpzJ_XCT4",
+    authDomain: "summer22-sps-25.firebaseapp.com",
+    projectId: "summer22-sps-25",
+    storageBucket: "summer22-sps-25.appspot.com",
+    messagingSenderId: "471830306552",
+    appId: "1:471830306552:web:9b6e1d5f76156fc077650d"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   logout_button.addEventListener('click', (e) => {
     signOut(auth)
       .then(() => {
-        window.location = "login.html";
+        window.location = "index.html";
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -25,15 +39,10 @@
       });
   });
 
-  onAuthStateChanged(function (user) {
-    if (user) {
-      // User is signed in.
-      window.location = 'feed.html';
-      console.log('User is signed in.');
-    } else {
-      // No user is signed in.
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
       console.log('No user is signed in.');
-      window.location = 'login.html';
+      window.location = 'index.html';
     }
   });
 </script>
@@ -52,7 +61,13 @@
         </div>
       </div>
       <div id="feed-view">
-        <button id="logout_button">Log out</button>
+        <div class="flex-hor" style="margin-left:auto; width:max-content;">
+          <a style="color:white;cursor: pointer" href="./profile.html"><button class="nav_button">Profile</button></a>
+          <button id="logout_button">Log out</button>
+
+        </div>
+
+
         <div class="flex-hor" id="recipe-box">
           <div id="left-recipe-box">
             <h1 style="text-align:center;">Chicken soup</h1>

@@ -6,10 +6,10 @@ body {
   display: flex;
   flex-direction: row;
 }
-.margin-auto{
+.margin-auto {
   margin:auto;
 }
-#left-panel{
+#left-panel {
   width: 15%;
   background-color:#FFCA00;
   height: 150vh;
@@ -17,30 +17,40 @@ body {
   position:fixed;
 }
 
-#feed-view{
+#feed-view {
   width:85%;
   height: 100vh;
   margin-left: auto;
 }
-#logout_button{
-  display: block;
-  width: fit-content;
+
+#logout_button {
+  width: 10em;
   border-radius: 25px;
   border: none;
   padding:15px;
   background-color: #513030;
   color: wheat;
   margin:15px;
-  margin-left: auto;
   font-weight: 600;
   cursor: pointer;
-  
 }
-#logo-box{
-    margin: auto;
 
-  
+.nav_button {
+  width: 10em;
+  border-radius: 25px;
+  border: none;
+  padding: 15px;
+  background-color: #513030;
+  color: wheat;
+  margin: 15px;
+  font-weight: 600;
+  cursor: pointer;
 }
+
+#logo-box {
+    margin: auto;
+}
+
 .space-around{
   justify-content: space-around;
 }
