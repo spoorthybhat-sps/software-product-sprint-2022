@@ -26,10 +26,6 @@
 
     <div id="signUp">
       <p>Don't have an account yet? <a href="signUp.html">SignUp</a></p>
-      <a href="./newrecipe.html">Write a Recipe</a>
-      <a href="./profile.html">Go to profile</a>
-      <a href="./Experiments.html">Go to experiments</a>
-      <a href="./Feed.html">Feed</a>
     </div>
   </div>
 </body>
@@ -71,7 +67,7 @@
           last_login: dt,
         })
 
-        alert('User loged in!');
+        //alert('User loged in!');
         location.href = "Feed.html"
         // ...
       })
@@ -86,12 +82,12 @@
   onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-      window.location = 'feed.html';
+      window.location = 'Feed.html';
       console.log('User is signed in.');
     } else {
       // No user is signed in.
       console.log('No user is signed in.');
-      window.location = 'login.html';
+      window.location = 'index.html';
     }
   });
 
